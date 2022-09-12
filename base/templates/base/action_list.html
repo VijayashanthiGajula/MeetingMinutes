@@ -1,0 +1,35 @@
+{% if request.user.is_authenticated%}
+   <p>{{request.user.username}}</p>
+   <a href="{% url 'logout' %}">Logout</a>
+{% else %}
+   <a href="{% url 'login'%}">Login</a>
+{%endif%}
+
+<h1>Meeting Minutes</h1>
+<a href="{%  url 'action-create'%}">Add Actions</a>
+<table>
+   <tr>
+    <th>title</th>
+    <th>Description</th>
+    <th>Responsible</th>
+    <th>DueDate</th>
+    <th>complete</th>
+    <th></th>
+    <th></th>
+    <th></th>
+   </tr>
+   {%for action in actions %}
+     <tr>
+        <td>{{action.title }}</td>  
+        <td>{{action.Description}}</td>   
+        <td>{{action.Responsible}}</td>   
+        <td>{{action.DueDate}}</td> 
+        <td>{{action.complete}}</td>   
+        <td><a href=" {%  url 'action' action.id %}" >View</a></td>
+        <td><a href=" {%  url 'action-update' action.id %}" >Update</a></td>
+        <td><a href=" {%  url 'action-delete' action.id %}" >Delete</a></td>
+     </tr>
+   {% empty %} 
+   <h3>No items in list</h3> 
+   {% endfor %}
+</table>

@@ -1,0 +1,12 @@
+<h2>Action form</h2>
+<div class="header-bar">
+    <a href="{% url 'actions' %}">&#8592; Back</a>
+</div>
+
+<div class="card-body"></div>
+    <form method="POST" action="">
+        {%csrf_token%}
+        {{form.as_p}}
+        <input class="button" type="submit" actual value="Submit" />
+    </form>
+</div>
